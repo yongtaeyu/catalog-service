@@ -16,4 +16,12 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
-          cache: gradle     
+          cache: gradle
+      - name: 코드 취약성 스캔
+        uses: anchore/scan-action@v3
+        id: scan
+        with:
+          path: "#{{github.workspace}}"
+          fail-build: false
+          severity-cutoff: high
+
