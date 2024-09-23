@@ -28,7 +28,10 @@ jobs:
       - name: 업로드 취약성 리포트
         uses: github/codeql-action/upload-sarif@v3
         if: success() || failure()
-
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: results.sarif
+          category: my-analysis-tool
       - name: 빌드, unit tests and 통합 테스트
         run: |
           chmod +x gradlew
